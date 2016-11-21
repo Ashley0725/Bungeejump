@@ -15,7 +15,6 @@ public class MainActivity extends AppCompatActivity{
 
         TextView StartGameLink = (TextView) findViewById(R.id.tvStartgame);
 
-        TextView HowToPlayLink = (TextView) findViewById(R.id.tvHowToPlay);
 
         StartGameLink.setOnClickListener(new View.OnClickListener() {
                                              @Override
@@ -25,12 +24,6 @@ public class MainActivity extends AppCompatActivity{
                                              }
                                          });
 
-        HowToPlayLink.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent howtoplayIntent = new Intent(MainActivity.this,HowToPlayActivity.class);
-                MainActivity.this.startActivity(howtoplayIntent);
-            }
-        });
+
     }
 }
