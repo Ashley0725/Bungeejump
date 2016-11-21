@@ -11,23 +11,25 @@
     tools:context="com.s413f.project.bungeejump.MainActivity">
 
     <TextView
-        android:text="Start Game"
-        android:textSize="@dimen/font_size"
-        android:background="#FFCCCCCC"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvStartgame"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:text="HowToPlay"
+        android:text="@string/how_to_play"
         android:textSize="@dimen/font_size"
         android:background="#FFCCCCCC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tvHowToPlay"
-        android:layout_marginTop="88dp"
-        android:layout_below="@+id/tvStartgame"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginBottom="29dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/tvStartgame"
+        android:layout_alignStart="@+id/tvStartgame" />
+
+    <TextView
+        android:text="@string/start_game"
+        android:textSize="@dimen/font_size"
+        android:background="#FFCCCCCC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvStartgame"
+        android:layout_above="@+id/tvHowToPlay"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp" />
 </RelativeLayout>
