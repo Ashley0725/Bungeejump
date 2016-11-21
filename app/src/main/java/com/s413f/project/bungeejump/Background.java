@@ -22,7 +22,7 @@ public class Background {
 
     /** Constructor. */
     public Background(Context context) {
-        background = BitmapFactory.decodeResource(context.getResources(), R.drawable.background);
+        background = BitmapFactory.decodeResource(context.getResources(), R.drawable.waterfall0);
         int scaledWidth = (int) (background.getWidth() * (PigView.arenaHeight / (float) background.getHeight()));
         background = Bitmap.createScaledBitmap(background, scaledWidth, PigView.arenaHeight, true);
     }
@@ -47,8 +47,8 @@ public class Background {
             // If the second bitmap moving out from the view, reset the first one to start again
             if (bgY2 <= 0) {
                 bgY = 0;
-                // Only need to draw one bitmap (the first one)
-                canvas.drawBitmap(background, bgX, bgY, null);
+                ///Only need to draw one bitmap (the first one)
+               canvas.drawBitmap(background, 0, 0, null);
             } else {
                 // Two bitmaps are needed to be drawn
                 canvas.drawBitmap(background, bgX, bgY, null);
