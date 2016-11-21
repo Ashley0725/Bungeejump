@@ -37,7 +37,7 @@ public class PigView extends SurfaceView {
     /** Animation object, the flying android. */
     private Pig pig;
     /** List of obstacles objects, i.e., pairs of pipes. */
-    private Vector<Stone> stones = new Vector<Stone>();
+    private Vector<Rock> rocks = new Vector<Rock>();
     /** Scrolling background of the view. */
     Background background;
 
@@ -132,22 +132,22 @@ public class PigView extends SurfaceView {
                 if (pig.isOutOfArena()) {
                     pig.jump();
                 }
-                for (int i = 0; i < stones.size(); i++) {
+                for (int i = 0; i < rocks.size(); i++) {
                     // a. Move the obstacles
-                    stones.get(i).move();
+                    rocks.get(i).move();
 
                     // b. Determine if the flying android collided with any obstacle
-                    if (stones.get(i).collideWith(pig)) {
-                        inity = stones.get(i).curPos.y;
-                        ((AnimationDrawable)(stones.get(i).getDrawable())).start();
-                        ((AnimationDrawable)(stones.get(i).getDrawable())).setOneShot(true);
-                        stones.remove(i);
+                    if (rocks.get(i).collideWith(pig)) {
+                        inity = rocks.get(i).curPos.y;
+                        ((AnimationDrawable)(rocks.get(i).getDrawable())).start();
+                        ((AnimationDrawable)(rocks.get(i).getDrawable())).setOneShot(true);
+                        rocks.remove(i);
                         break;
                     }
 
                     // c. Remove any obstacle that already moved out from the arena
-                    if (stones.get(i).isOutOfArena())
-                        stones.remove(i);
+                    if (rocks.get(i).isOutOfArena())
+                        rocks.remove(i);
 
                 }
             }
@@ -159,8 +159,8 @@ public class PigView extends SurfaceView {
                 background.drawOn(canvas);
 
                 // b. Draw the obstacles
-                for (int i = 0; i < stones.size(); i++) {
-                    stones.get(i).drawOn(canvas);
+                for (int i = 0; i < rocks.size(); i++) {
+                    rocks.get(i).drawOn(canvas);
                 }
 
 
@@ -223,8 +223,8 @@ public class PigView extends SurfaceView {
         float timeDiff = gameTime - obstacleCreationTime;
         if (obstacleCreationTime == -1 || timeDiff > ((Math.random()*10000) + 5000)) {
             obstacleCreationTime = gameTime;
-            Stone s = new Stone(context);
-            stones.add(s);
+            Rock s = new Rock(context);
+            rocks.add(s);
         }
     }
 
@@ -273,10 +273,10 @@ public class PigView extends SurfaceView {
         totalTime = 0;
         startTime = -1;
         obstacleCreationTime = -1;
-        for (int i = 0; i < stones.size(); i++) {
-            stones.remove(i);
+        for (int i = 0; i < rocks.size(); i++) {
+            rocks.remove(i);
         }
-        stones.clear();
+        rocks.clear();
         pig.reset();
         ((AnimationDrawable)(pig.getDrawable())).stop();
         background.stop(true);
