@@ -1,20 +1,19 @@
 package com.s413f.project.bungeejump;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 
 /**
  * Created by Ashley Wong on 13/11/2016.
  */
 
-public class Stone extends Sprite {
+public class Rock extends Sprite {
 
     private float dy = Background.SpeedYMagnitude;
 
     /** Constructor. */
-    public Stone(Context context) {
-        drawable = (AnimationDrawable) context.getResources().getDrawable(R.drawable.flying_android);
+    public Rock(Context context) {
+        drawable = (AnimationDrawable) context.getResources().getDrawable(R.drawable.rock);
 
 
         int y = 0 ;
