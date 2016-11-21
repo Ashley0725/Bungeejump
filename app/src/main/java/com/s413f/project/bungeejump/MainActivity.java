@@ -13,11 +13,11 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView StratGameLink = (TextView) findViewById(R.id.tvStartgame);
+        TextView StartGameLink = (TextView) findViewById(R.id.tvStartgame);
 
         TextView HowToPlayLink = (TextView) findViewById(R.id.tvHowToPlay);
 
-        StratGameLink.setOnClickListener(new View.OnClickListener() {
+        StartGameLink.setOnClickListener(new View.OnClickListener() {
                                              @Override
                                              public void onClick(View v) {
                                                  Intent startgameIntent = new Intent(MainActivity.this,StartGameActivity.class);
