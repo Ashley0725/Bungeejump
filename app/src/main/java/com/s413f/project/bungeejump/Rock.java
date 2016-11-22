@@ -2,6 +2,7 @@ package com.s413f.project.bungeejump;
 
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.Drawable;
 
 /**
  * Created by Ashley Wong on 13/11/2016.
@@ -12,7 +13,7 @@ public class Rock extends Sprite {
     private float dy = Background.SpeedYMagnitude;
 
     /** Constructor. */
-    public Rock(Context context) {
+    public Rock( Context context) {
         drawable = (AnimationDrawable) context.getResources().getDrawable(R.drawable.rock);
 
 
@@ -28,12 +29,10 @@ public class Rock extends Sprite {
         setPosition(x, y);
     }
 
-    public void reset() {
-
-        float x = (PigView.arenaWidth - getWidth()) / 3.f;
-        float y = (PigView.arenaHeight - getHeight())/ 3.f;
-
-        // ii. Update its position
+    public void defaultRock(int y) {
+        int minX = 0;
+        int maxX = (int) (PigView.arenaWidth - getWidth());
+        int x = minX + (int) (Math.random() * (maxX - minX));
         setPosition(x, y);
     }
     @Override

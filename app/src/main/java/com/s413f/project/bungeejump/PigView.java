@@ -91,16 +91,15 @@ public class PigView extends SurfaceView {
                 if (waitForTouch) {  // Start of the game
                     waitForTouch = false;
                     startTime = System.currentTimeMillis();
-                    background.stop(true);
+                    ((AnimationDrawable)(background.getDrawable())).start();
                     ((AnimationDrawable)(pig.getDrawable())).start();
+                    ((AnimationDrawable)(pig.getDrawable())).setOneShot(true);
 
 
                 }
                 else {  // Game active
                     pig.fly(x);
-                    if(!pig.jumping(inity)){
-                        jumping = false;
-                    }
+
 
                 }
 
@@ -119,39 +118,42 @@ public class PigView extends SurfaceView {
 
             if (!gameOver && !waitForTouch) {
 
+                if (!pig.jumping(inity)) {
+                    jumping = false;
+                }
+
                 createObstacles();
 
                 if (jumping) {
                     pig.jump();
+
                 } else {
                     pig.move();
                 }
+                    if (pig.isOutOfArena()) {
+                        gameOver();
+                    } else {
+                        for (int i = 0; i < rocks.size(); i++) {
+                            // a. Move the obstacles
+                            rocks.get(i).move();
 
+                            // b. Determine if the flying android collided with any obstacle
+                            if (rocks.get(i).collideWith(pig)) {
+                                inity = rocks.get(i).curPos.y;
+                                jumping = true;
+                                ((AnimationDrawable) (rocks.get(i).getDrawable())).start();
+                                ((AnimationDrawable) (rocks.get(i).getDrawable())).setOneShot(true);
+                                rocks.remove(i);
+                                break;
+                            }
 
-                // iii. If the flying android moved out from the arena, call method gameOver
-                if (pig.isOutOfArena()) {
-                    pig.jump();
-                }
-                for (int i = 0; i < rocks.size(); i++) {
-                    // a. Move the obstacles
-                    rocks.get(i).move();
-
-                    // b. Determine if the flying android collided with any obstacle
-                    if (rocks.get(i).collideWith(pig)) {
-                        inity = rocks.get(i).curPos.y;
-                        jumping = true;
-                        ((AnimationDrawable)(rocks.get(i).getDrawable())).start();
-                        ((AnimationDrawable)(rocks.get(i).getDrawable())).setOneShot(true);
-                        rocks.remove(i);
-                        break;
+                            // c. Remove any obstacle that already moved out from the arena
+                            if (rocks.get(i).isOutOfArena())
+                                rocks.remove(i);
+                        }
                     }
-
-                    // c. Remove any obstacle that already moved out from the arena
-                    if (rocks.get(i).isOutOfArena())
-                        rocks.remove(i);
-
                 }
-            }
+
 
             // v. Draw the game objects
             Canvas canvas = getHolder().lockCanvas();
@@ -229,11 +231,13 @@ public class PigView extends SurfaceView {
         }
     }
 
+
+
     /** Game over. */
     public void gameOver() {
         gameOver = true;
         ((AnimationDrawable)(pig.getDrawable())).stop();
-        background.stop(true);
+        ((AnimationDrawable)(background.getDrawable())).stop();
     }
 
     /** Resume or start the animation. */
@@ -248,7 +252,7 @@ public class PigView extends SurfaceView {
         totalTime += (System.currentTimeMillis() - startTime);
         waitForTouch = true;
 
-        background.stop(true);
+        ((AnimationDrawable)(background.getDrawable())).stop();
         ((AnimationDrawable) (pig.getDrawable())).stop();
 
         timer.cancel();
@@ -264,11 +268,16 @@ public class PigView extends SurfaceView {
             arenaHeight = getHeight();
 
 
-            background = new Background(context);
+            background = new Background(this,context);
             pig = new Pig(this, context);
 
-        }
 
+
+
+
+
+
+        }
         gameOver = false;
         waitForTouch = true;
         totalTime = 0;
@@ -280,11 +289,16 @@ public class PigView extends SurfaceView {
         rocks.clear();
         pig.reset();
         ((AnimationDrawable)(pig.getDrawable())).stop();
-        background.stop(true);
+        ((AnimationDrawable)(background.getDrawable())).stop();
+        for(int i=0;i<arenaHeight-200;i+=400) {
+            Rock s = new Rock(context);
+            s.defaultRock(i);
+            rocks.add(s);
+        }
 
 
-
-        inity = arenaHeight ;
+        inity = arenaHeight-pig.getHeight();
+        jumping = true;
     }
 
     /**

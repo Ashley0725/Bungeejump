@@ -17,7 +17,7 @@ import android.widget.ImageView;
  */
 
 public class Pig extends Sprite {
-    static final float INITIAL_DY = 20;  // Initial velocity in vertical direction
+    static final float INITIAL_DY = 30;  // Initial velocity in vertical direction
     private float dy;  // y velocity of the flying android object
 
     /** Constructor. */
@@ -41,7 +41,7 @@ public class Pig extends Sprite {
     }
 
     public boolean jumping(float inity){
-        if(curPos.y >= inity - 20*INITIAL_DY){
+        if(curPos.y >= inity - 10*INITIAL_DY){
             return true;
         }
         return false;

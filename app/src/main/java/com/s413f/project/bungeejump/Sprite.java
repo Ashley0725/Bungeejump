@@ -2,6 +2,7 @@ package com.s413f.project.bungeejump;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.PixelFormat;
 import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
@@ -16,6 +17,8 @@ import android.graphics.drawable.Drawable;
     final protected PointF curPos = new PointF();
     /** Drawable for the sprite. */
     Drawable drawable;
+
+
 
     /** Returns the width of this sprite. */
     public int getWidth() {
@@ -46,6 +49,7 @@ import android.graphics.drawable.Drawable;
     public Drawable getDrawable() {
         return drawable;
     }
+
 
     /**
      * Sets the position of this sprite. Subclasses should use this method to
