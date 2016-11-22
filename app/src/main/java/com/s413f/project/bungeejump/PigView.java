@@ -139,6 +139,7 @@ public class PigView extends SurfaceView {
                     // b. Determine if the flying android collided with any obstacle
                     if (rocks.get(i).collideWith(pig)) {
                         inity = rocks.get(i).curPos.y;
+                        jumping = true;
                         ((AnimationDrawable)(rocks.get(i).getDrawable())).start();
                         ((AnimationDrawable)(rocks.get(i).getDrawable())).setOneShot(true);
                         rocks.remove(i);

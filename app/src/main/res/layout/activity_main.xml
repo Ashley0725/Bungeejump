@@ -12,17 +12,13 @@
     tools:context="com.s413f.project.bungeejump.MainActivity"
     android:background="@drawable/waterfall_view">
 
-    <TextView
-        android:text="@string/how_to_play"
-        android:textSize="@dimen/font_size"
-        android:background="#FFCCCCCC"
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvHowToPlay"
-        android:layout_marginBottom="29dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/tvStartgame"
-        android:layout_alignStart="@+id/tvStartgame" />
+        app:srcCompat="@drawable/game_title"
+        android:id="@+id/imageView2"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/tvStartgame" />
 
     <TextView
         android:text="@string/start_game"
@@ -31,16 +27,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tvStartgame"
-        android:layout_above="@+id/tvHowToPlay"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="24dp" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/game_title"
-        android:id="@+id/imageView2"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/tvStartgame" />
+        android:layout_marginBottom="130dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

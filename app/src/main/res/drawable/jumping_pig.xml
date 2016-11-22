@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <animation-list
       xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item android:drawable="@drawable/pig1"
+    <item android:drawable="@drawable/pig_turn_left"
             android:duration="200" />
-    <item android:drawable="@drawable/pig3"
+    <item android:drawable="@drawable/jump_left"
             android:duration="200" />
-    <item android:drawable="@drawable/pig5"
+    <item android:drawable="@drawable/jump_left_down"
             android:duration="200" />
     
 </animation-list>

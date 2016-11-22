@@ -22,7 +22,7 @@ public class Pig extends Sprite {
 
     /** Constructor. */
     public Pig(Drawable.Callback callback, Context context) {
-        drawable = (AnimationDrawable) context.getResources().getDrawable(R.drawable.flying_android);
+        drawable = (AnimationDrawable) context.getResources().getDrawable(R.drawable.jumping_pig);
         drawable.setCallback(callback);
 
         dy = INITIAL_DY;
