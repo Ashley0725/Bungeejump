@@ -5,7 +5,7 @@
             android:duration="200" />
     <item android:drawable="@drawable/jump_left"
             android:duration="200" />
-    <item android:drawable="@drawable/jump_left_down"
+    <item android:drawable="@drawable/start_standing_on_a_rock_left"
             android:duration="200" />
     
 </animation-list>
