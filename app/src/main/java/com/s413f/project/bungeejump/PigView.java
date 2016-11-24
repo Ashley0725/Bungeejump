@@ -38,9 +38,11 @@ public class PigView extends SurfaceView {
     private Pig pig;
     /** List of obstacles objects, i.e., pairs of pipes. */
     private Vector<Rock> rocks = new Vector<Rock>();
+
     /** Scrolling background of the view. */
     Background background;
 
+    private WaterFall waterFall;
     /** Timer for the game loop. */
     private Timer timer = null;
 
@@ -64,6 +66,8 @@ public class PigView extends SurfaceView {
     private boolean jumping = true;
     /** initial y of the pig start jumping**/
     private float inity  ;
+
+    private int speed = 400;
 
 
     /** Saving and handling of user input of touch events. */
@@ -91,7 +95,6 @@ public class PigView extends SurfaceView {
                 if (waitForTouch) {  // Start of the game
                     waitForTouch = false;
                     startTime = System.currentTimeMillis();
-                    ((AnimationDrawable)(background.getDrawable())).start();
                     ((AnimationDrawable)(pig.getDrawable())).start();
                     ((AnimationDrawable)(pig.getDrawable())).setOneShot(true);
 
@@ -126,33 +129,34 @@ public class PigView extends SurfaceView {
 
                 if (jumping) {
                     pig.jump();
+                    for (int i = 0; i < rocks.size(); i++) {
+                        rocks.get(i).move();
+                    }
 
-                } else {
+                }else {
                     pig.move();
                 }
-                    if (pig.isOutOfArena()) {
-                        gameOver();
-                    } else {
-                        for (int i = 0; i < rocks.size(); i++) {
-                            // a. Move the obstacles
-                            rocks.get(i).move();
 
-                            // b. Determine if the flying android collided with any obstacle
-                            if (rocks.get(i).collideWith(pig)) {
-                                inity = rocks.get(i).curPos.y;
-                                jumping = true;
-                                ((AnimationDrawable) (rocks.get(i).getDrawable())).start();
-                                ((AnimationDrawable) (rocks.get(i).getDrawable())).setOneShot(true);
-                                rocks.remove(i);
-                                break;
+                            if (pig.isOutOfArena()) {
+                                gameOver();
+                            } else {
+                                for (int i = 0; i < rocks.size(); i++) {
+                                    if (rocks.get(i).collideWith(pig)) {
+                                        ((AnimationDrawable) (rocks.get(i).getDrawable())).setOneShot(true);
+                                        ((AnimationDrawable) (rocks.get(i).getDrawable())).start();
+                                        inity = rocks.get(i).curPos.y;
+                                        jumping = true;
+                                        rocks.remove(i);
+
+                                    }
+
+                                if(rocks.get(i).isOutOfArena()) {
+                                    rocks.remove(i);
+                                }
+                                }
                             }
-
-                            // c. Remove any obstacle that already moved out from the arena
-                            if (rocks.get(i).isOutOfArena())
-                                rocks.remove(i);
                         }
-                    }
-                }
+
 
 
             // v. Draw the game objects
@@ -220,16 +224,15 @@ public class PigView extends SurfaceView {
 
     /** Create obstacles randomly. */
     public void createObstacles() {
-        // Add code here
-        // Task 2: Create one pair of pipes for every 15-25s randomly
-        float gameTime = (System.currentTimeMillis() - startTime + totalTime);
-        float timeDiff = gameTime - obstacleCreationTime;
-        if (obstacleCreationTime == -1 || timeDiff > ((Math.random()*10000) + 5000)) {
-            obstacleCreationTime = gameTime;
-            Rock s = new Rock(context);
-            rocks.add(s);
+        if (rocks.lastElement().curPos.y > speed) {
+            //float gameTime = (System.currentTimeMillis() - startTime + totalTime);
+            //float timeDiff = gameTime - obstacleCreationTime;
+            //if (obstacleCreationTime == -1 || timeDiff > ((Math.random() * 10000) + 5000)) {
+             //   obstacleCreationTime = gameTime;
+                Rock s = new Rock(context);
+                rocks.add(s);
+            }
         }
-    }
 
 
 
@@ -237,7 +240,6 @@ public class PigView extends SurfaceView {
     public void gameOver() {
         gameOver = true;
         ((AnimationDrawable)(pig.getDrawable())).stop();
-        ((AnimationDrawable)(background.getDrawable())).stop();
     }
 
     /** Resume or start the animation. */
@@ -252,9 +254,8 @@ public class PigView extends SurfaceView {
         totalTime += (System.currentTimeMillis() - startTime);
         waitForTouch = true;
 
-        ((AnimationDrawable)(background.getDrawable())).stop();
         ((AnimationDrawable) (pig.getDrawable())).stop();
-
+        ((AnimationDrawable) (waterFall.getDrawable())).stop();
         timer.cancel();
         timer = null;
     }
@@ -268,7 +269,8 @@ public class PigView extends SurfaceView {
             arenaHeight = getHeight();
 
 
-            background = new Background(this,context);
+            background = new Background(context);
+            waterFall = new WaterFall(context);
             pig = new Pig(this, context);
 
 
@@ -283,14 +285,11 @@ public class PigView extends SurfaceView {
         totalTime = 0;
         startTime = -1;
         obstacleCreationTime = -1;
-        for (int i = 0; i < rocks.size(); i++) {
-            rocks.remove(i);
-        }
+        rocks.removeAllElements();
         rocks.clear();
         pig.reset();
         ((AnimationDrawable)(pig.getDrawable())).stop();
-        ((AnimationDrawable)(background.getDrawable())).stop();
-        for(int i=0;i<arenaHeight-200;i+=400) {
+        for(int i=0;i<arenaHeight-pig.getHeight();i+=speed) {
             Rock s = new Rock(context);
             s.defaultRock(i);
             rocks.add(s);

@@ -17,7 +17,7 @@ import android.widget.ImageView;
  */
 
 public class Pig extends Sprite {
-    static final float INITIAL_DY = 30;  // Initial velocity in vertical direction
+    static final float INITIAL_DY = 40;  // Initial velocity in vertical direction
     private float dy;  // y velocity of the flying android object
 
     /** Constructor. */

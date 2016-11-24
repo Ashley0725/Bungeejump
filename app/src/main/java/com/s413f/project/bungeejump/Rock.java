@@ -10,7 +10,7 @@ import android.graphics.drawable.Drawable;
 
 public class Rock extends Sprite {
 
-    private float dy = Background.SpeedYMagnitude;
+    private float dy = 45;
 
     /** Constructor. */
     public Rock( Context context) {
