@@ -69,7 +69,6 @@ public class PigView extends SurfaceView {
 
     private int speed = 400;
 
-
     /** Saving and handling of user input of touch events. */
     private class UserInput {
         /** Whether there is a user input present. */
