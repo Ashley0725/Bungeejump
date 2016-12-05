@@ -50,7 +50,7 @@ public class Pig extends Sprite {
 
     /** Move the flying android upward.*/
     public void fly(float x) {
-        curPos.x += (x - curPos.x)/3.f;
+        curPos.x += (x - curPos.x)/2.f;
     }
 
     public void jump() {

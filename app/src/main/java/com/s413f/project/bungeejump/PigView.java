@@ -161,6 +161,11 @@ public class PigView extends SurfaceView {
                  } else {
                 for (int i = 0; i < rocks.size(); i++) {
                     if (rocks.get(i).collideWith(pig)) {
+                        background.roll();
+                        for (int s = 0; s < rocks.size(); s++) {
+                            rocks.get(s).move();
+
+                        }
                         ((AnimationDrawable)(pig.getDrawable())).start();
                         ((AnimationDrawable) (rocks.get(i).getDrawable())).setOneShot(true);
                         ((AnimationDrawable) (rocks.get(i).getDrawable())).start();
@@ -314,7 +319,7 @@ public class PigView extends SurfaceView {
         pig.reset();
         ((AnimationDrawable)(pig.getDrawable())).stop();
         //((AnimationDrawable)(waterFall.getDrawable())).stop();
-        for(int i=0;i<arenaHeight-pig.getHeight()-300;i+=speed) {
+        for(int i=0;i<arenaHeight-pig.getHeight()-280;i+=speed) {
             Rock s = new Rock(context);
             s.defaultRock(i);
             rocks.add(s);

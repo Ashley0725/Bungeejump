@@ -16,7 +16,7 @@ import android.graphics.drawable.Drawable;
 
 public class Background {
     /** Scrolling speed magnitude of background. */
-    static final int SpeedXMagnitude = 48;
+    static final int SpeedXMagnitude = 50;
     /** Scrolling speed of background. */
     private static int speedX = 0;
     /** Bitmap of the background. */

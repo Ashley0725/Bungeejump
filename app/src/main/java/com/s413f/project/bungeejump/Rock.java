@@ -12,7 +12,7 @@ import static com.s413f.project.bungeejump.R.attr.background;
 
 public class Rock extends Sprite {
 
-    private float dy = 48;
+    private float dy = 50;
 
     /** Constructor. */
     public Rock( Context context) {
