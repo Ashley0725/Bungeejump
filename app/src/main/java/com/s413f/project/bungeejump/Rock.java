@@ -4,13 +4,15 @@ import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 
+import static com.s413f.project.bungeejump.R.attr.background;
+
 /**
  * Created by Ashley Wong on 13/11/2016.
  */
 
 public class Rock extends Sprite {
 
-    private float dy = 45;
+    private float dy = 48;
 
     /** Constructor. */
     public Rock( Context context) {
@@ -46,6 +48,17 @@ public class Rock extends Sprite {
             updateBounds();
         }
     }
+
+    public void moveup() {
+        if (dy != 0) {
+            // Update the new 4 position of the obstacle
+            curPos.y -= dy ;
+
+            // Update the boundary of the obstacle drawable
+            updateBounds();
+        }
+    }
+
 
     @Override
     /** Evaluate if the obstacle has moved out from the arena. */

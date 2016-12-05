@@ -44,6 +44,12 @@ public boolean onOptionsItemSelected(MenuItem item) {
         case R.id.action_restart:
         animationView.newGame(false);
         break;
+        case R.id.action_pause:
+        animationView.pause();
+        break;
+        case R.id.action_resume:
+        animationView.resume();
+        break;
         case R.id.action_howtoplay:
         break;
         }

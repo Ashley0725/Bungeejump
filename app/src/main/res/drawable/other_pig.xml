@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:drawable="@drawable/pig_turn_right"
+        android:duration="200" />
+    <item android:drawable="@drawable/jump_right"
+        android:duration="200" />
+    <item android:drawable="@drawable/start_standing_on_a_rock_right"
+        android:duration="200" />
+
+</animation-list>

@@ -17,13 +17,14 @@ import android.widget.ImageView;
  */
 
 public class Pig extends Sprite {
-    static final float INITIAL_DY = 40;  // Initial velocity in vertical direction
+    static final float INITIAL_DY = 38;  // Initial velocity in vertical direction
     private float dy;  // y velocity of the flying android object
 
     /** Constructor. */
     public Pig(Drawable.Callback callback, Context context) {
-        drawable = (AnimationDrawable) context.getResources().getDrawable(R.drawable.jumping_pig);
-        drawable.setCallback(callback);
+
+            drawable = (AnimationDrawable) context.getResources().getDrawable(R.drawable.jumping_pig);
+            drawable.setCallback(callback);
 
         dy = INITIAL_DY;
     }
@@ -41,7 +42,7 @@ public class Pig extends Sprite {
     }
 
     public boolean jumping(float inity){
-        if(curPos.y >= inity - 10*INITIAL_DY){
+        if(curPos.y >= inity - 8*INITIAL_DY){
             return true;
         }
         return false;
